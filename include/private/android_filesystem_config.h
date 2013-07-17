@@ -77,6 +77,8 @@
 #define AID_SDCARD_AV     1034  /* external storage audio/video access */
 #define AID_SDCARD_ALL    1035  /* access all users external storage */
 
+#define AID_THEMEMAN      1300  /* theme manager */
+
 #define AID_SHELL         2000  /* adb and debug shell user */
 #define AID_CACHE         2001  /* cache access */
 #define AID_DIAG          2002  /* access to diagnostic resources */
@@ -167,6 +169,7 @@ static const struct android_id_info android_ids[] = {
 
     { "misc",          AID_MISC, },
     { "nobody",        AID_NOBODY, },
+    { "theme_man", AID_THEMEMAN },
 };
 
 #define android_id_count \
