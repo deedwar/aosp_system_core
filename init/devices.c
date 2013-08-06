@@ -159,6 +159,7 @@ void fixup_sys_perms(const char *upath)
                 freecon(secontext);
            }
         }
+        restorecon(buf);
     }
 }
 
