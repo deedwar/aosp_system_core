@@ -20,6 +20,9 @@
 #include <sys/types.h>
 #include <stdint.h>
 
+#define char32_t and_char32_t
+#define char16_t and_char16_t
+
 extern "C" {
 
 typedef uint32_t char32_t;
