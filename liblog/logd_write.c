@@ -33,8 +33,8 @@
 #endif
 #endif
 
-#include <cutils/logger.h>
-#include <cutils/logd.h>
+#include <log/logger.h>
+#include <log/logd.h>
 #include <cutils/log.h>
 
 #define LOG_BUF_SIZE	1024
