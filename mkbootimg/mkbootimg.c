@@ -118,7 +118,6 @@ int main(int argc, char **argv)
     unsigned ramdisk_offset = 0x01000000;
     unsigned second_offset  = 0x00f00000;
     unsigned tags_offset    = 0x00000100;
-    size_t cmdlen;
 
     argc--;
     argv++;
@@ -198,19 +197,11 @@ int main(int argc, char **argv)
 
     memcpy(hdr.magic, BOOT_MAGIC, BOOT_MAGIC_SIZE);
 
-    cmdlen = strlen(cmdline);
-    if(cmdlen > (BOOT_ARGS_SIZE + BOOT_EXTRA_ARGS_SIZE - 2)) {
+    if(strlen(cmdline) > (BOOT_ARGS_SIZE - 1)) {
         fprintf(stderr,"error: kernel commandline too large\n");
         return 1;
     }
-    /* Even if we need to use the supplemental field, ensure we
-     * are still NULL-terminated */
-    strncpy((char *)hdr.cmdline, cmdline, BOOT_ARGS_SIZE - 1);
-    hdr.cmdline[BOOT_ARGS_SIZE - 1] = '\0';
-    if (cmdlen >= (BOOT_ARGS_SIZE - 1)) {
-        cmdline += (BOOT_ARGS_SIZE - 1);
-        strncpy((char *)hdr.extra_cmdline, cmdline, BOOT_EXTRA_ARGS_SIZE);
-    }
+    strcpy((char*)hdr.cmdline, cmdline);
 
     kernel_data = load_file(kernel_fn, &hdr.kernel_size);
     if(kernel_data == 0) {
