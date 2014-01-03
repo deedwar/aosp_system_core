@@ -10,12 +10,16 @@ libsparse_src_files := \
         sparse_err.c \
         sparse_read.c
 
+ifneq ($(strip $(BOARD_NEEDS_OLD_MMAP)),)
+    libsparse_common_cflags := -DBOARD_NEEDS_OLD_MMAP
+endif
 
 include $(CLEAR_VARS)
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/include
 LOCAL_SRC_FILES := $(libsparse_src_files)
 LOCAL_MODULE := libsparse_host
 LOCAL_STATIC_LIBRARIES := libz
+LOCAL_CFLAGS := $(libsparse_common_cflags)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include external/zlib
 include $(BUILD_HOST_STATIC_LIBRARY)
 
@@ -24,6 +28,7 @@ include $(CLEAR_VARS)
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/include
 LOCAL_SRC_FILES := $(libsparse_src_files)
 LOCAL_MODULE := libsparse
+LOCAL_CFLAGS := $(libsparse_common_cflags)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include external/zlib
 LOCAL_SHARED_LIBRARIES := \
     libz
@@ -34,6 +39,7 @@ include $(CLEAR_VARS)
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/include
 LOCAL_SRC_FILES := $(libsparse_src_files)
 LOCAL_MODULE := libsparse_static
+LOCAL_CFLAGS := $(libsparse_common_cflags)
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include external/zlib
 LOCAL_STATIC_LIBRARIES := libz
 include $(BUILD_STATIC_LIBRARY)
