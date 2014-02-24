@@ -17,7 +17,7 @@
 
 
 	.text
-	.align
+	.align 2
 	
 	.global scanline_t32cb16blend_arm
 
@@ -41,7 +41,7 @@
  *
  */
 
-.macro pixel,   DREG, SRC, FB, ODD
+.macro "pixel"   DREG, SRC, FB, ODD
 
     // SRC = 0xAABBGGRR
     mov     r7, \SRC, lsr #24           // sA
@@ -146,7 +146,7 @@ scanline_t32cb16blend_arm:
     tst     r0, #0x3
     beq     aligned
     subs    r2, r2, #1
-    ldmlofd	sp!, {r4-r7, lr}        // return
+    ldmfd	sp!, {r4-r7, lr}        // return
     bxlo    lr
 
 last:
@@ -197,6 +197,6 @@ aligned:
     mov     r4, r5
 
 9:  adds    r2, r2, #1
-    ldmlofd sp!, {r4-r7, lr}        // return
+    ldmfd sp!, {r4-r7, lr}        // return
     bxlo    lr
     b       last

@@ -16,7 +16,7 @@
  */
 
     .text
-    .align
+    .align 2
 
     .global scanline_col32cb16blend_arm
 
