@@ -81,6 +81,8 @@
 #define AID_CACHE         2001  /* cache access */
 #define AID_DIAG          2002  /* access to diagnostic resources */
 
+#define AID_IDD           2987  /* can read/write /dev/idd */
+
 /* The 3000 series are intended for use as supplemental group id's only.
  * They indicate special Android capabilities that the kernel is aware of. */
 #define AID_NET_BT_ADMIN  3001  /* bluetooth: create any socket */
@@ -91,6 +93,9 @@
 #define AID_NET_BW_STATS  3006  /* read bandwidth statistics */
 #define AID_NET_BW_ACCT   3007  /* change bandwidth statistics accounting */
 #define AID_NET_BT_STACK  3008  /* bluetooth: access config files */
+
+#define AID_QCOM_ONCRPC   3009  /* can read/write /dev/oncrpc files */
+#define AID_QCOM_DIAG     3010  /* can read/write /dev/diag */
 
 #define AID_MISC          9998  /* access to misc storage */
 #define AID_NOBODY        9999
@@ -156,6 +161,8 @@ static const struct android_id_info android_ids[] = {
     { "cache",         AID_CACHE, },
     { "diag",          AID_DIAG, },
 
+    { "idd",           AID_IDD, },
+
     { "net_bt_admin",  AID_NET_BT_ADMIN, },
     { "net_bt",        AID_NET_BT, },
     { "inet",          AID_INET, },
@@ -164,6 +171,9 @@ static const struct android_id_info android_ids[] = {
     { "net_bw_stats",  AID_NET_BW_STATS, },
     { "net_bw_acct",   AID_NET_BW_ACCT, },
     { "net_bt_stack",  AID_NET_BT_STACK, },
+
+    { "qcom_oncrpc",   AID_QCOM_ONCRPC, },
+    { "qcom_diag",     AID_QCOM_DIAG, },
 
     { "misc",          AID_MISC, },
     { "nobody",        AID_NOBODY, },
